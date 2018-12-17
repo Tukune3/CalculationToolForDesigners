@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Language" content="ja">
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/metallicratio.css">
+    <title>自動計算ツール｜株式会社ジーニアスウェブ</title>
+    <script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+</head>
+<body id="tool-wrapper">
+    <header class="tool-header">
+        <p class="tool-title">自動計算ツール</p>
+        <ul class="tool-mv">
+            <li><a href="./index.html" id="tool-open-page">貴金属比</a></li>
+            <li><a href="./column_calculation.html">カラム計算</a></li>
+            <li><a href="./line_spacing_conversion.html">行間変換</a></li>
+            <li><a href="./size_conversion.html">サイズ変換</a></li>
+        </ul>
+    </header>
+    <article id="metallicratio-wrapper">
+        <section id="metallicratio-boxlist">
+            <input type="radio" value="1" name="ratioval" id="radio-box1" class="radio-check" checked>
+            <label for="radio-box1" class="radio-box1"></label>
+            <input type="radio" value="1.333" name="ratioval" id="radio-box2" class="radio-check">
+            <label for="radio-box2" class="radio-box2"></label>
+            <input type="radio" value="1.414" name="ratioval" id="radio-box3" class="radio-check">
+            <label for="radio-box3" class="radio-box3"></label>
+            <input type="radio" value="1.618" name="ratioval" id="radio-box4" class="radio-check">
+            <label for="radio-box4" class="radio-box4"></label>
+            <input type="radio" value="1.732" name="ratioval" id="radio-box5" class="radio-check">
+            <label for="radio-box5" class="radio-box5"></label>
+            <input type="radio" value="2" name="ratioval" id="radio-box6" class="radio-check">
+            <label for="radio-box6" class="radio-box6"></label>
+            <input type="radio" value="2.414" name="ratioval" id="radio-box7" class="radio-check">
+            <label for="radio-box7" class="radio-box7"></label>
+            <input type="radio" value="2.618" name="ratioval" id="radio-box8" class="radio-check">
+            <label for="radio-box8" class="radio-box8"></label>
+            <input type="radio" value="3.303" name="ratioval" id="radio-box9" class="radio-check">
+            <label for="radio-box9" class="radio-box9"></label>
+        </section>
+        <section id="setting-wrapper">
+            <div class="setting-box">
+                <label for="round" class="setting-title">表示桁数</label>
+                <div id="round-lists" class="round-box">
+                    <select size="1" id="round">
+                        <option value="1" label="0"></option>
+                        <option value="10" label="0.0"></option>
+                        <option value="100" label="0.00"></option>
+                        <option value="1000" label="0.000" selected></option>
+                    </select>
+                </div>
+            </div>
+            <div class="setting-box">
+                <label for="box-vertical" class="setting-title">縦</label>
+                <div class="number-box-wrapper">
+                    <input type="number" name="box-vertical" id="box-vertical" class="number-box">
+                </div>
+                <input type="radio" value="1" name="fixed-check" class="fixed-check" id="fixed-check1">
+            </div>
+            <div class="setting-box">
+                <label for="box-side" class="setting-title">横</label>
+                <div class="number-box-wrapper">
+                    <input type="number" id="box-side" name="box-side" class="number-box">
+                </div>
+                <input type="radio" value="2" name="fixed-check" class="fixed-check" id="fixed-check2">
+            </div>
+        </section>
+    </article>
+</body>
+<script type="text/javascript" src="./assets/js/decimal.js"></script>
+<script type="text/javascript" src="./assets/js/metallicratio.js"></script>
+</html>

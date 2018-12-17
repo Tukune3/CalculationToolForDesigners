@@ -1,0 +1,292 @@
+@charset "UTF-8";
+/* ===========================================================
+
+トップページ
+
+=========================================================== */
+
+/*------------------------------------------------------------
+	行間計算
+------------------------------------------------------------*/
+
+#column-calculation-wrapper{
+    background: #BBB;
+    padding: 20px 20px 0 20px;
+}
+#setting-wrapper{
+    display: flex;
+    padding: 0 0 20px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+.setting-box{
+    display: flex;
+    flex-direction: column;
+}
+.setting-title{
+    font-size: 1rem;
+    line-height: 1.62;
+}
+
+/*------------------------------------------------------------
+	表示桁数
+------------------------------------------------------------*/
+#round-lists {
+    overflow: hidden;
+    width: 50%;
+    text-align: center;
+}
+#round-lists select {
+    width: 100%;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+#round-lists select::-ms-expand {
+    display: none;
+}
+#round-lists.round-box {
+    position: relative;
+    border-radius: 2px;
+    border: 2px solid #262626;
+    background: #fff;
+    width: auto;
+}
+#round-lists.round-box::before {
+    position: absolute;
+    top: 0.8em;
+    right: 0.8em;
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #262626;
+    pointer-events: none;
+}
+#round-lists.round-box select {
+    padding: 4px 38px 4px 8px;
+    color: #262626;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+/*------------------------------------------------------------
+	テキストボックス
+------------------------------------------------------------*/
+
+.number-box-wrapper{
+    margin: 0 0 5px;
+}
+.number-box{
+    padding: 3px 0;
+    font-weight: bold;
+    border-radius: 2px;
+    border: solid 2px #262626;
+    color: #000;
+    font-size: 1rem;
+    text-align: right;
+}
+
+
+/*------------------------------------------------------------
+	テーブル
+------------------------------------------------------------*/
+
+.column-wrapper a:link {
+	color: #666;
+	font-weight: bold;
+	text-decoration:none;
+}
+.column-wrapper a:visited {
+	color: #999999;
+	font-weight:bold;
+	text-decoration:none;
+}
+.column-wrapper a:active,
+.column-wrapper a:hover {
+	color: #bd5a35;
+	text-decoration:underline;
+}
+.column-wrapper {
+	font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+	color:#000;
+	font-size: 1rem;
+	text-shadow: 1px 1px 0px #fff;
+	background:#eaebec;
+	margin: 0 auto;
+	border:#000 2px solid;
+    width: 100%;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+
+	-moz-box-shadow: 0 1px 2px #d1d1d1;
+	-webkit-box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+    table-layout: fixed;
+}
+.column-wrapper th {
+	padding:21px 25px 22px 25px;
+	border-top:2px solid #000;
+	border-bottom:2px solid #000;
+
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+.column-wrapper th:first-child {
+	text-align: center;
+}
+.column-wrapper tr:first-child th:first-child {
+	-moz-border-radius-topleft:3px;
+	-webkit-border-top-left-radius:3px;
+	border-top-left-radius:3px;
+}
+.column-wrapper tr:first-child th:last-child {
+	-moz-border-radius-topright:3px;
+	-webkit-border-top-right-radius:3px;
+	border-top-right-radius:3px;
+}
+.column-wrapper td:first-child {
+	text-align: center;
+	border-left: 0;
+}
+.column-wrapper td {
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+
+	background: #fafafa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+.column-wrapper tr:last-child td {
+	border-bottom:0;
+}
+.column-wrapper tr:last-child td:first-child {
+	-moz-border-radius-bottomleft:3px;
+	-webkit-border-bottom-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+.column-wrapper tr:last-child td:last-child {
+	-moz-border-radius-bottomright:3px;
+	-webkit-border-bottom-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+.column-wrapper tr:hover td {
+	background: #f2f2f2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+}
+/*------------------------------------------------------------
+	テキストボックス
+------------------------------------------------------------*/
+.column-px{
+    width: 100%;
+    padding: 11px 6px;
+    font-weight: bold;
+    color: #000;
+    box-sizing: border-box;
+    text-align: right;
+    border:solid 0px;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+.column-percent{
+    width: 100%;
+    padding: 11px 6px;
+    font-weight: bold;
+    color: #000;
+    box-sizing: border-box;
+    text-align: right;
+    border:solid 0px;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+.column-name{
+    width: 100%;
+    padding: 6px;
+    font-weight: bold;
+    color: #000;
+    box-sizing: border-box;
+    text-align: center;
+    border:solid 0px;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+ /* === ボタンを表示するエリア ============================== */
+.column-switch {
+  line-height    : 45px;                /* 1行の高さ          */
+  letter-spacing : 0;                   /* 文字間             */
+  text-align     : center;              /* 文字位置は中央     */
+  font-size      : 27px;                /* 文字サイズ         */
+
+  position       : relative;            /* 親要素が基点       */
+  margin         : auto;                /* 中央寄せ           */
+  width          : 150px;               /* ボタンの横幅       */
+  background     : transparent;                /* デフォルト背景色   */
+}
+
+ /* === チェックボックス ==================================== */
+.column-switch input[type="checkbox"] {
+  display        : none;            /* チェックボックス非表示 */
+}
+
+ /* === チェックボックスのラベル（標準） ==================== */
+.column-switch label {
+  display        : block;               /* ボックス要素に変更 */
+  box-sizing     : border-box;          /* 枠線を含んだサイズ */
+  height         : auto;                /* ボタンの高さ       */
+  border-radius  : 30px;                /* 角丸               */
+}
+
+ /* === チェックボックスのラベル（ONのとき） ================ */
+.column-switch input[type="checkbox"]:checked +label {
+  border-color   : #78bd78;             /* 選択タブの枠線     */
+}
+
+ /* === 表示する文字（標準） ================================ */
+.column-switch label span:after{
+  content        : "OFF";               /* 表示する文字       */
+  padding        : 0 0 0 98px;          /* 表示する位置       */
+  color          : #999999;             /* 文字色             */
+}
+
+ /* === 表示する文字（ONのとき） ============================ */
+.column-switch  input[type="checkbox"]:checked + label span:after{
+  content        : "ON";                /* 表示する文字       */
+  padding        : 0 98px 0 0;          /* 表示する位置       */
+  color          : rgb(224, 75, 75);             /* 文字色             */
+}
+
+ /* === 丸部分のSTYLE（標準） =============================== */
+.column-switch #swImg {
+  position       : absolute;            /* 親要素からの相対位置*/
+  width          : 58px;                /* 丸の横幅           */
+  height         : 30px;                /* 丸の高さ           */
+  background     : #999999;             /* カーソルタブの背景 */
+  top            : 7px;                 /* 親要素からの位置   */
+  left           : -3px;                 /* 親要素からの位置   */
+  border-radius  : 10px;                /* 角丸               */
+  transition     : .2s;                 /* 滑らか変化         */
+  pointer-events: none;
+}
+
+ /* === 丸部分のSTYLE（ONのとき） =========================== */
+.column-switch input[type="checkbox"]:checked ~ #swImg {
+  transform      : translateX(100px);    /* 丸も右へ移動       */
+  background     : rgb(224, 75, 75);             /* カーソルタブの背景 */
+}

@@ -1,0 +1,225 @@
+@charset "UTF-8";
+/* ===========================================================
+
+トップページ
+
+=========================================================== */
+
+/*------------------------------------------------------------
+	貴金属比
+------------------------------------------------------------*/
+#metallicratio-wrapper{
+    background: #BBB;
+    padding-left: 20px;
+}
+#metallicratio-wrapper #metallicratio-boxlist{
+    display: flex;
+    max-width: 100%;
+    height: auto;
+    padding: 25px 0 20px;
+    box-sizing: border-box;
+}
+.radio-check{
+    display: none;
+}
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box1"]{
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_1000_off.png) no-repeat;
+    background-size: auto 68px;
+}
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box1{
+    background: url(../img/idx_btn_rect_1000_on.png) no-repeat;
+    background-size: auto 68px;
+}
+
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box2"]{
+    position: relative;
+    display: inline-block;
+    width: 64px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_1333_off.png) no-repeat;
+    background-size: auto 68px;
+}
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box2{
+    background: url(../img/idx_btn_rect_1333_on.png) no-repeat;
+    background-size: auto 68px;
+}
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box3"]{
+    position: relative;
+    display: inline-block;
+    width: 68px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_1414_off.png) no-repeat;
+    background-size: auto 68px;
+}
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box3{
+    background: url(../img/idx_btn_rect_1414_on.png) no-repeat;
+    background-size: auto 68px;
+}
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box4"]{
+    position: relative;
+    display: inline-block;
+    width: 78px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_1618_off.png) no-repeat;
+    background-size: auto 68px;
+}
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box4{
+    background: url(../img/idx_btn_rect_1618_on.png) no-repeat;
+    background-size: auto 68px;
+}
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box5"]{
+    position: relative;
+    display: inline-block;
+    width: 83px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_1732_off.png) no-repeat;
+    background-size: auto 68px;
+}
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box5{
+    background: url(../img/idx_btn_rect_1732_on.png) no-repeat;
+    background-size: auto 68px;
+}
+
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box6"]{
+    position: relative;
+    display: inline-block;
+    width: 96px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_2000_off.png) no-repeat;
+    background-size: auto 68px;
+}
+
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box6{
+    background: url(../img/idx_btn_rect_2000_on.png) no-repeat;
+    background-size: auto 68px;
+}
+
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box7"]{
+    position: relative;
+    display: inline-block;
+    width: 116px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_2414_off.png) no-repeat;
+    background-size: auto 68px;
+}
+
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box7{
+    background: url(../img/idx_btn_rect_2414_on.png) no-repeat;
+    background-size: auto 68px;
+}
+
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box8"]{
+    position: relative;
+    display: inline-block;
+    width: 126px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_2618_off.png) no-repeat;
+    background-size: auto 68px;
+}
+
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box8{
+    background: url(../img/idx_btn_rect_2618_on.png) no-repeat;
+    background-size: auto 68px;
+}
+
+#metallicratio-wrapper #metallicratio-boxlist label[for="radio-box9"]{
+    position: relative;
+    display: inline-block;
+    width: 159px;
+    height: 68px;
+    margin-right: 20px;
+    background: url(../img/idx_btn_rect_3303_off.png) no-repeat;
+    background-size: auto 68px;
+    margin-right: 0;
+}
+#metallicratio-wrapper #metallicratio-boxlist input[type="radio"]:checked + .radio-box9{
+    background: url(../img/idx_btn_rect_3303_on.png) no-repeat;
+    background-size: auto 68px;
+}
+
+/*------------------------------------------------------------
+    各種設定
+------------------------------------------------------------*/
+#setting-wrapper{
+    display: flex;
+    padding: 0 0 20px;
+    box-sizing: border-box;
+}
+.setting-box{
+    flex:auto;
+    display: flex;
+    flex-direction: column;
+}
+.setting-title{
+    padding-bottom: 5px;
+}
+#round-lists {
+    overflow: hidden;
+    width: 50%;
+    text-align: center;
+}
+#round-lists select {
+    width: 100%;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+#round-lists select::-ms-expand {
+    display: none;
+}
+#round-lists.round-box {
+    position: relative;
+    border-radius: 2px;
+    border: 2px solid #262626;
+    background: #fff;
+}
+#round-lists.round-box::before {
+    position: absolute;
+    top: 0.8em;
+    right: 0.8em;
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #262626;
+    pointer-events: none;
+}
+#round-lists.round-box select {
+    padding: 8px 38px 8px 8px;
+    color: #262626;
+    font-weight: bold;
+}
+
+/* 縦・横 */
+.number-box-wrapper{
+    margin: 0 0 5px;
+}
+.number-box{
+    padding: 6px 16px;
+    font-weight: bold;
+    border-radius: 2px;
+    border: solid 2px #262626;
+}
+

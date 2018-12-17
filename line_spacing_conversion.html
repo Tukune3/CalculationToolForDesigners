@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Language" content="ja">
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/line_spacing.css">
+    <title>自動計算ツール｜株式会社ジーニアスウェブ</title>
+    <script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+</head>
+<body id="tool-wrapper">
+    <header class="tool-header">
+        <p class="tool-title">自動計算ツール</p>
+        <ul class="tool-mv">
+            <li><a href="./index.html">貴金属比</a></li>
+            <li><a href="./column_calculation.html">カラム計算</a></li>
+            <li><a href="./line_spacing_conversion.html" id="tool-open-page">行間変換</a></li>
+            <li><a href="./size_conversion.html">サイズ変換</a></li>
+        </ul>
+    </header>
+    <article id="line-spacing-wrapper">
+        <section id="setting-wrapper">
+            <div class="setting-box">
+                <label for="round" class="setting-title">表示桁数</label>
+                <div id="round-lists" class="round-box">
+                    <select size="1" id="round">
+                        <option value="1" label="0"></option>
+                        <option value="10" label="0.0"></option>
+                        <option value="100" label="0.00"></option>
+                        <option value="1000" label="0.000" selected></option>
+                    </select>
+                </div>
+            </div>
+            <div class="setting-box">
+                <label for="line-spacing-body" class="setting-title">フォントサイズ(px)</label>
+                <div class="line-spacing-wrapper">
+                    <input type="number" name="line-spacing-body" id="line-spacing-body" class="number-box">
+                </div>
+            </div>
+            <div class="setting-box">
+                <label for="line-feed-body" class="setting-title">行送り</label>
+                <div class="line-spacing-wrapper">
+                    <input type="number" id="line-feed-body" name="line-feed-body" class="number-box">
+                </div>
+            </div>
+            <div class="setting-box">
+                <label for="line-height-body" class="setting-title">Line-height</label>
+                <div class="line-spacing-wrapper">
+                    <input type="number" id="line-height-body" name="line-height-body" class="number-box" disabled="disabled">
+                </div>
+            </div>
+        </section>
+    </article>
+</body>
+<script type="text/javascript" src="./assets/js/decimal.js"></script>
+</body>
+<script type="text/javascript" src="./assets/js/line_spacing.js"></script>
+</html>

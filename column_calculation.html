@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Language" content="ja">
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/column_calculation.css">
+    <title>自動計算ツール｜株式会社ジーニアスウェブ</title>
+    <script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+</head>
+<body id="tool-wrapper">
+    <header class="tool-header">
+        <p class="tool-title">自動計算ツール</p>
+        <ul class="tool-mv">
+            <li><a href="./index.html">貴金属比</a></li>
+            <li><a href="./column_calculation.html" id="tool-open-page">カラム計算</a></li>
+            <li><a href="./line_spacing_conversion.html">行間変換</a></li>
+            <li><a href="./size_conversion.html">サイズ変換</a></li>
+        </ul>
+    </header>
+    <article id="column-calculation-wrapper">
+        <section id="setting-wrapper">
+            <div class="setting-box">
+                <label for="round" class="setting-title">表示桁数</label>
+                <div id="round-lists" class="round-box">
+                    <select size="1" id="round">
+                        <option value="1" label="0"></option>
+                        <option value="10" label="0.0"></option>
+                        <option value="100" label="0.00"></option>
+                        <option value="1000" label="0.000" selected></option>
+                    </select>
+                </div>
+            </div>
+            <div class="setting-box">
+                <label for="content-size" class="setting-title">コンテンツサイズ(px)</label>
+                <div class="number-box-wrapper">
+                    <input type="number" name="content-size" id="content-size" class="number-box">
+                </div>
+                <input type="radio" value="1" name="fixed-flag" class="fixed-check" id="fixed-check1">
+            </div>
+            <div class="setting-box">
+                <label for="column-margin" class="setting-title">カラム間のマージン(px)</label>
+                <div class="number-box-wrapper">
+                    <input type="number" id="column-margin" name="column-margin" class="number-box">
+                </div>
+                <input type="radio" value="2" name="fixed-flag" class="fixed-check" id="fixed-check2">
+            </div>
+            <div class="setting-box">
+                <label for="total-margin" class="setting-title">マージンの合計値(px)</label>
+                <div class="number-box-wrapper">
+                    <input type="number" id="total-margin" name="total-margin" class="number-box">
+                </div>
+                <input type="radio" value="3" name="fixed-flag" class="fixed-check" id="fixed-check3">
+            </div>
+            <div class="setting-box">
+                <label for="column-number" class="setting-title">カラム数</label>
+                <div class="number-box-wrapper">
+                    <input type="number" id="columns" name="column-number" class="number-box">
+                </div>
+                <input type="radio" value="4" name="fixed-flag" class="fixed-check" id="fixed-check4">
+            </div>
+        </section>
+        <section id="setting-wrapper">
+            <table class="column-wrapper">
+                <thead>
+                    <tr>
+                        <th>カラム名</th>
+                        <th>px</th>
+                        <th>%</th>
+                        <th>固定</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="column-close0" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name0" name="column-name" value="カラム１" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px0" name="column-px0" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent0" name="column-percent0" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch0" value="0">
+                                <label for="column-switch0"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="column-close" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name1" name="column-name" value="カラム２" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px1" name="column-px1" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent1" name="column-percent1" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch1" value="1">
+                                <label for="column-switch1"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="column-close2" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name2" name="column-name" value="カラム３" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px2" name="column-px2" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent2" name="column-percent2" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch2" value="2">
+                                <label for="column-switch2"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="column-close3" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name3" name="column-name" value="カラム４" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px3" name="column-px3" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent3" name="column-percent3" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch3" value="3">
+                                <label for="column-switch3"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="column-close4" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name4" name="column-name" value="カラム５" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px4" name="column-px4" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent4" name="column-percent4" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch4" value="4">
+                                <label for="column-switch4"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="column-close5" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name5" name="column-name" value="カラム６" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px5" name="column-px5" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent5" name="column-percent5" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch5" value="5">
+                                <label for="column-switch5"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="column-close6" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name6" name="column-name" value="カラム７" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px6" name="column-px6" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent6" name="column-percent6" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch6" value="6">
+                                <label for="column-switch6"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="column-close7" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name7" name="column-name" value="カラム８" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px7" name="column-px7" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent7" name="column-percent7" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch7" value="7">
+                                <label for="column-switch7"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="column-close8" class="even">
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="text" id="column-name8" name="column-name" value="カラム９" class="column-name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-px8" name="column-px8" class="column-px">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-value-wrapper">
+                                <input type="number" id="column-percent8" name="column-percent8" class="column-percent" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-switch">
+                                <input type="checkbox" name="column-switch" id="column-switch8" value="8">
+                                <label for="column-switch8"><span></span></label>
+                                <div id="swImg"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </article>
+</body>
+<script type="text/javascript" src="./assets/js/decimal.js"></script>
+<script type="text/javascript" src="./assets/js/column_calculation.js"></script>
+</html>

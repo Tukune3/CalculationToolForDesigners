@@ -1,0 +1,58 @@
+/*------------------------------------------------------------
+共通
+------------------------------------------------------------*/
+
+/*------------------------------------------------------------
+全体
+------------------------------------------------------------*/
+#tool-wrapper{
+    width: 1038px;
+    height: auto;
+    margin: 0 auto 50px;
+    background-image: url(../img/Melamine-wood-004.png);
+}
+/*------------------------------------------------------------
+ヘッダー
+------------------------------------------------------------*/
+.tool-header .tool-title{
+    font-size: 42px;
+    padding: 35px 0 20px 15px;
+    text-align: center;
+    color: white;
+    line-height: 21px;
+}
+.tool-header .tool-mv{
+    list-style: none;
+    padding-inline-start: unset;
+    display: flex;
+    box-sizing: border-box;
+    text-align: center;
+}
+.tool-header .tool-mv li{
+    width: 100%;
+    border: solid 0px #000;
+    border-collapse: collapse;
+    background-color: #000;
+}
+.tool-header .tool-mv li a:hover{
+    color: #000;
+    background-color: #BBB;
+}
+.tool-header .tool-mv #tool-open-page{
+    color: #000;
+    background-color: #BBB;
+}
+.tool-header .tool-mv li a{
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 20px;
+}
+/*------------------------------------------------------------
+メイン
+------------------------------------------------------------*/
+
+.fixed-check{
+    display: none;
+}
