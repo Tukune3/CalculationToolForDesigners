@@ -1,46 +1,36 @@
 $(function(){
     // decimal.jsの計算用変数
     var decimalCalculation;
-    
-    var count = 0;
     function columnMarginCalculation(){
-        count += 1;
-        console.log(count);
         var contentSize = $('#content-size').val();
         var columnMargin = $('#column-margin').val();
         var totalMargin = $('#total-margin').val();
         var columns = $('#columns').val();
         var round = $('#round').val();
-        var numberBox = $('input[name="fixed-flag"]:checked').val();
+        var fixedFlag = $('input[name="fixed-flag"]:checked').val();
         var columnNumberOneLess = columns - 1;
         // 条件１　マージンの合計値を算出
-        if(columnMargin && columns > 1 && columns < 10 && (numberBox == 2 || numberBox == 4)){
+        if(columnMargin && columns > 1 && columns < 10 && (fixedFlag == 2 || fixedFlag == 4)){
             decimalCalculation = new Decimal(columnMargin);
             totalMargin = decimalCalculation.times(columnNumberOneLess).toNumber();
             totalMargin = Math.floor(totalMargin*round)/round;
             $('#total-margin').val(totalMargin);
-            columnCalculation(contentSize,columnMargin,totalMargin,columns,round,numberBox,columnNumberOneLess);
+            columnCalculation(contentSize,columnMargin,totalMargin,columns,round);
             // 条件２　カラム間のマージンを算出
-        }else if(totalMargin && columns && columns > 1  && columns < 10 && (numberBox == 3 || numberBox == 4)){
+        }else if(totalMargin && columns && columns > 1  && columns < 10 && (fixedFlag == 3 || fixedFlag == 4)){
             decimalCalculation = new Decimal(totalMargin);
             columnMargin = decimalCalculation.div(columnNumberOneLess).toNumber();
             columnMargin = Math.floor(columnMargin*round)/round;
             $('#column-margin').val(columnMargin);
-            columnCalculation(contentSize,columnMargin,totalMargin,columns,round,numberBox,columnNumberOneLess);
+            columnCalculation(contentSize,columnMargin,totalMargin,columns,round);
             // 条件３　コンテンツサイズを入力した時に
-        }else if(contentSize && columns && columns > 1  && columns < 10 && numberBox == 1){
-            columnCalculation(contentSize,columnMargin,totalMargin,columns,round,numberBox,columnNumberOneLess);
+        }else if(contentSize && columns && columns > 1  && columns < 10 && fixedFlag == 1){
+            columnCalculation(contentSize,columnMargin,totalMargin,columns,round);
         }
     }
-    function columnCalculation(contentSize,columnMargin,totalMargin,columns,round,numberBox,columnNumberOneLess){
-        var pxSumValue;
-        var percentSumValue;
-        var decimalCalculation;
-        var columnSwitchValue;
+    function columnCalculation(contentSize,columnMargin,totalMargin,columns,round){
+        var pxSumValue,percentSumValue,columnSwitchValue,totalPxRemainingColumn,remainingColumns,totalPxColumn;
         var columnSwitchSum = 0;
-        var totalPxRemainingColumn;
-        var remainingColumns;
-        var totalPxColumn;
         var columnSwitch = $('input[name="column-switch"]:checked').map(function(){return Number($(this).val());}).get();
         var columnSwitchLength = columnSwitch.length;
         if(columnSwitchLength > 0 && columns >= columnSwitch[columnSwitchLength - 1] && columns > columnSwitch[columnSwitchLength - 1]){
@@ -160,13 +150,8 @@ $(function(){
     $('#content-size,#column-margin,#total-margin,#columns').focus(function(){
         fixedChenge(this);
     });
-    
     $('.column-px').focus(function(){
         pxFixedChenge(this);
-    });
-    
-    $('.column-percent').focus(function(){
-        percentFixedChenge(this);
     });
     // 各inputがフォーカスされ、ラジオボタンの値が変わった時、
     $('#round,.column-switch').change(function(){
