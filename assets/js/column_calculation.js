@@ -152,38 +152,6 @@ $(function(){
         }
     }
     
-    function percentFixedChenge(_this){
-        switch($(_this).attr('id')){
-            case 'column-percent0' : 
-            $('#column-switch0').attr('checked',true);
-            break;
-            case 'column-percent1' : 
-            $('#column-switch1').attr('checked',true);
-            break;
-            case 'column-percent2' : 
-            $('#column-switch2').attr('checked',true);
-            break;
-            case 'column-percent3' : 
-            $('#column-switch3').attr('checked',true);
-            break;
-            case 'column-percent4' : 
-            $('#column-switch4').attr('checked',true);
-            break;
-            case 'column-percent5' : 
-            $('#column-switch5').attr('checked',true);
-            break;
-            case 'column-percent6' : 
-            $('#column-switch6').attr('checked',true);
-            break;
-            case 'column-percent7' : 
-            $('#column-switch7').attr('checked',true);
-            break;
-            case 'column-percent8' : 
-            $('#column-switch8').attr('checked',true);
-            break;
-        }
-    }
-    
     // 各値が変わった時、
     $( '#content-size,#column-margin,#total-margin,#columns').change( function() {
         columnMarginCalculation();
