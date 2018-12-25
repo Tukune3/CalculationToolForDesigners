@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Style-Type" content="text/css">
-    <meta http-equiv="Content-Script-Type" content="text/javascript">
-    <meta http-equiv="Content-Language" content="ja">
-    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/common.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/size_conversion.css">
-    <title>自動計算ツール｜株式会社ジーニアスウェブ</title>
-    <script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/common.css">
+    <link rel="stylesheet" href="./assets/css/size_conversion.css">
+    <title>自動計算ツール｜コンテンツの割合算出</title>
+    <script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
 </head>
 <body id="tool-wrapper">
     <header class="tool-header">
-        <p class="tool-title">自動計算ツール</p>
+        <p class="tool-title">Calculation tool for designers</p>
         <ul class="tool-mv">
             <li><a href="./index.html">貴金属比</a></li>
             <li><a href="./column_calculation.html">カラム計算</a></li>
@@ -49,15 +45,15 @@
                 <input type="radio" value="2" name="fixed-check" class="fixed-check" id="fixed-check2">
             </div>
             <div class="setting-box">
-                <label for="size-ratio-body" class="setting-title">コンテンツの割合</label>
-                <div class="size-ratio-wrapper">
+                <label for="size-ratio-body" class="setting-title">コンテンツの割合(%)</label>
+                <button class="copy" value="size-ratio-body">
                     <input type="number" step="0.001"id="size-ratio-body" name="size-ratio-body" class="number-box">
-                </div>
+                </button>
                 <input type="radio" value="3" name="fixed-check" class="fixed-check" id="fixed-check3">
             </div>
         </section>
     </article>
-<script type="text/javascript" src="./assets/js/decimal.js"></script>
-<script type="text/javascript" src="./assets/js/size_conversion.js"></script>
+    <script src="./assets/js/decimal.js"></script>
+    <script src="./assets/js/size_conversion.js"></script>
 </body>
 </html>

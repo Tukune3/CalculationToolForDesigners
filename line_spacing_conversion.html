@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Style-Type" content="text/css">
-    <meta http-equiv="Content-Script-Type" content="text/javascript">
-    <meta http-equiv="Content-Language" content="ja">
-    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/common.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/line_spacing.css">
-    <title>自動計算ツール｜株式会社ジーニアスウェブ</title>
-    <script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/common.css">
+    <link rel="stylesheet" href="./assets/css/line_spacing.css">
+    <title>自動計算ツール｜行間算出</title>
+    <script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
 </head>
 <body id="tool-wrapper">
     <header class="tool-header">
-        <p class="tool-title">自動計算ツール</p>
+        <p class="tool-title">Calculation tool for designers</p>
         <ul class="tool-mv">
             <li><a href="./index.html">貴金属比</a></li>
             <li><a href="./column_calculation.html">カラム計算</a></li>
@@ -41,20 +37,20 @@
                 </div>
             </div>
             <div class="setting-box">
-                <label for="line-feed-body" class="setting-title">行送り</label>
+                <label for="line-feed-body" class="setting-title">行送り(px)</label>
                 <div class="line-spacing-wrapper">
                     <input type="number" id="line-feed-body" name="line-feed-body" class="number-box">
                 </div>
             </div>
             <div class="setting-box">
                 <label for="line-height-body" class="setting-title">Line-height</label>
-                <div class="line-spacing-wrapper">
-                    <input type="number" id="line-height-body" name="line-height-body" class="number-box" disabled="disabled">
-                </div>
+                <button class="copy" value="line-height-body">
+                    <input type="number" id="line-height-body" name="line-height-body" class="number-box" readonly>
+                </button>
             </div>
         </section>
     </article>
-<script type="text/javascript" src="./assets/js/decimal.js"></script>
-<script type="text/javascript" src="./assets/js/line_spacing.js"></script>
+    <script src="./assets/js/decimal.js"></script>
+    <script src="./assets/js/line_spacing.js"></script>
 </body>
 </html>

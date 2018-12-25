@@ -11,35 +11,53 @@ $(function(){
         if(contentSize > 1 && boxSize && (numberBox == 1 || numberBox == 2)){
             sizeConversionVariable = new Decimal(boxSize);
             sizeRatioValue = sizeConversionVariable.div(contentSize).toNumber();
-            sizeRatioValue = Math.floor(sizeRatioValue*round)/round;
+            sizeRatioValue = Math.floor(sizeRatioValue*100*round);
+            sizeConversionVariable = new Decimal(sizeRatioValue);
+            sizeRatioValue = sizeConversionVariable.div(round).toNumber();
             $('#size-ratio-body').val(sizeRatioValue);
         }else if(contentSize && sizeRatio && numberBox == 3){
             sizeConversionVariable = new Decimal(contentSize);
             boxSizeValue = sizeConversionVariable.times(sizeRatio).toNumber();
             boxSizeValue = Math.floor(boxSizeValue*round)/round;
+            sizeConversionVariable = new Decimal(boxSizeValue);
+            boxSizeValue = sizeConversionVariable.div(100).toNumber();
             $('#box-size-body').val(boxSizeValue);
         }
     }
-    
-    function fixedChenge(_this){
-        if($(_this).attr('id') == 'content-size-body'){
+    function fixedChange(_this){
+        switch($(_this).attr('id')){
+            case 'content-size-body':
             $('#fixed-check1').attr('checked',true);
-        }else if($(_this).attr('id') == 'box-size-body'){
+            break;
+            case 'box-size-body':
             $('#fixed-check2').attr('checked',true);
-        }else if($(_this).attr('id') == 'size-ratio-body'){
+            break;
+            case 'size-ratio-body':
             $('#fixed-check3').attr('checked',true);
+            break;
         }
     }
-    
+    function copyToClipboard(_this){
+        var copyVal = $(_this).val();
+        // コピー対象をJavaScript上で変数として定義する
+        var copyTarget = document.getElementById(copyVal);
+        // コピー対象のテキストを選択する
+        copyTarget.select();
+        // 選択しているテキストをクリップボードにコピーする
+        document.execCommand("copy");
+    }
+    $('.copy').on('click',function(){
+        copyToClipboard(this);
+    });
     //　行間・Line-heightのテキストボックスの値が変わった時
     // 表示桁数のセレクトボックスの値が変わった時
-    $('#content-size-body,#box-size-body,#size-ratio-body,#round').change(function(){
+    $('#content-size-body,#box-size-body,#size-ratio-body').change(function(){
         sizeConversion();
     });
     
     // 縦・横のテキストボックスがフォーカスされた時
     $('#content-size-body,#box-size-body,#size-ratio-body').focus(function(){
-        fixedChenge(this);
+        fixedChange(this);
     });
     
     // deleteキーとbackspaceキーとenterキーの入力を検知

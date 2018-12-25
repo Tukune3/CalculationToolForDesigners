@@ -11,83 +11,44 @@
 
 #size-conversion-wrapper{
     background: #BBB;
-    padding: 20px 0 0 20px;
+    padding: 30px 40px;
 }
 #setting-wrapper{
     display: flex;
-    padding: 0 0 20px;
     box-sizing: border-box;
+    justify-content: space-between;
 }
 .setting-box{
     flex: auto;
     display: flex;
     flex-direction: column;
-}
-.setting-title{
-    font-size: 1rem;
-    /* padding-bottom: 5px; */
-    line-height: 1.62;
+    max-width: 20%;
 }
 
-/*------------------------------------------------------------
-	表示桁数
-------------------------------------------------------------*/
-#round-lists {
-    overflow: hidden;
-    width: 50%;
-    text-align: center;
-}
-#round-lists select {
-    width: 100%;
-    padding-right: 1em;
-    cursor: pointer;
-    text-indent: 0.01px;
-    text-overflow: ellipsis;
-    border: none;
-    outline: none;
-    background: transparent;
-    background-image: none;
-    box-shadow: none;
-    -webkit-appearance: none;
-    appearance: none;
-}
-#round-lists select::-ms-expand {
-    display: none;
-}
-#round-lists.round-box {
+/* === クリップボードのSTYLE =========================== */
+.copy {
     position: relative;
-    border-radius: 2px;
-    border: 2px solid #262626;
-    background: #fff;
-}
-#round-lists.round-box::before {
-    position: absolute;
-    top: 0.8em;
-    right: 0.8em;
-    width: 0;
-    height: 0;
+    max-width: 100%;
+    height: auto;
     padding: 0;
-    content: '';
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid #262626;
-    pointer-events: none;
+    border: transparent;
+    background-color: transparent;
+    box-sizing: border-box;
 }
-#round-lists.round-box select {
-    padding: 8px 38px 8px 8px;
-    color: #262626;
-    font-weight: bold;
+.copy:before {
+    content: url(../img/copy-solid.svg);
+    position: absolute;
+    top: 0;
+    left: 7px;
+    bottom: 0;
+    width: 20px;
+    height: 23px;
+    margin: auto 0;
+    opacity: 0.4;
 }
-/*------------------------------------------------------------
-	テキストボックス（コンテンツ幅・ボックス幅・ボックス割合）
-------------------------------------------------------------*/
-
-.number-box-wrapper{
-    margin: 0 0 5px;
+.copy:hover:before{
+    opacity: 1;
 }
-.number-box{
-    padding: 6px 16px;
-    font-weight: bold;
-    border-radius: 2px;
-    border: solid 2px #262626;
+button.copy:focus{
+    outline-color: #000;
 }
