@@ -3,7 +3,7 @@
 ------------------------------------------------------------*/
 
 /*------------------------------------------------------------
-全体
+全体・背景
 ------------------------------------------------------------*/
 #tool-wrapper{
     width: 1038px;
@@ -55,4 +55,73 @@
 
 .fixed-check{
     display: none;
+}
+
+.setting-title{
+    font-size: 1rem;
+    line-height: 1.62;
+}
+/*------------------------------------------------------------
+表示桁数
+------------------------------------------------------------*/
+#round-lists {
+    overflow: hidden;
+    text-align: center;
+}
+#round-lists select {
+    width: 100%;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+#round-lists select::-ms-expand {
+    display: none;
+}
+#round-lists.round-box {
+    position: relative;
+    border-radius: 2px;
+    border: 2px solid #262626;
+    background: #fff;
+}
+#round-lists.round-box::before {
+    position: absolute;
+    top: 0.8em;
+    right: 0.8em;
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #262626;
+    pointer-events: none;
+}
+#round-lists.round-box select {
+    padding: 8px 38px 8px 8px;
+    color: #262626;
+    font-weight: bold;
+    font-size: 1rem;
+}
+/*------------------------------------------------------------
+数値の入力欄
+------------------------------------------------------------*/
+.number-box-wrapper{
+    margin: 0 0 5px;
+}
+.number-box{
+    padding: 8px 0;
+    font-weight: bold;
+    border-radius: 2px;
+    border: solid 2px #262626;
+    color: #000;
+    font-size: 1rem;
+    text-align: right;
 }

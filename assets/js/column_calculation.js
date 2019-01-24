@@ -4,113 +4,147 @@ $(function(){
     function columnMarginCalculation(){
         var contentSize = $('#content-size').val();
         var columnMargin = $('#column-margin').val();
-        var totalMargin = $('#total-margin').val();
         var columns = $('#columns').val();
         var round = $('#round').val();
-        var fixedFlag = $('input[name="fixed-flag"]:checked').val();
-        var columnNumberOneLess = columns - 1;
-        // 条件１　マージンの合計値を算出
-        if(columnMargin && columns > 1 && columns < 10 && (fixedFlag == 2 || fixedFlag == 4)){
+        var columnsOneLess = columns - 1; 
+        if(columnMargin && contentSize && columns > 1  && columns < 10){
+            // マージンの合計値を算出
             decimalCalculation = new Decimal(columnMargin);
-            totalMargin = decimalCalculation.times(columnNumberOneLess).toNumber();
-            totalMargin = Math.floor(totalMargin*round)/round;
-            $('#total-margin').val(totalMargin);
-            columnCalculation(contentSize,columnMargin,totalMargin,columns,round);
-            // 条件２　カラム間のマージンを算出
-        }else if(totalMargin && columns && columns > 1  && columns < 10 && (fixedFlag == 3 || fixedFlag == 4)){
-            decimalCalculation = new Decimal(totalMargin);
-            columnMargin = decimalCalculation.div(columnNumberOneLess).toNumber();
-            columnMargin = Math.floor(columnMargin*round)/round;
-            $('#column-margin').val(columnMargin);
-            columnCalculation(contentSize,columnMargin,totalMargin,columns,round);
-            // 条件３　コンテンツサイズを入力した時に
-        }else if(contentSize && columns && columns > 1  && columns < 10 && fixedFlag == 1){
-            columnCalculation(contentSize,columnMargin,totalMargin,columns,round);
+            columnMargin = decimalCalculation.times(columnsOneLess).toNumber();
+            columnCalculation(contentSize,columnMargin,columns,round);
         }
     }
-    function columnCalculation(contentSize,columnMargin,totalMargin,columns,round){
-        var pxSumValue,percentSumValue,columnSwitchValue,totalPxRemainingColumn,remainingColumns,totalPxColumn;
-        var columnSwitchSum = 0;
+    // 画面幅・カラム間のマージン・カラム数・表示桁数
+    function columnCalculation(contentSize,columnMargin,columns,round){
+        console.log('test');
+        var remainingColumnPx,fixedColumnPercent,fixedColumnPx,totalPxRemainingColumn,
+        remainingColumns,totalPxColumns,contentsTotalSize;
         var columnSwitch = $('input[name="column-switch"]:checked').map(function(){return Number($(this).val());}).get();
         var columnSwitchLength = columnSwitch.length;
+        var fixedTotalcolumn = 0;
+        var contentsTotalPercent = 0;
         if(columnSwitchLength > 0 && columns >= columnSwitch[columnSwitchLength - 1] && columns > columnSwitch[columnSwitchLength - 1]){
-            $.each(columnSwitch,function(index,val){
-                columnSwitchValue = Number($('#column-px' + val).val());
+            for(var h=0; h<columnSwitchLength; h++){
+                fixedColumnPx = Number($('#column-px' + columnSwitch[h]).val());
                 // 選択されているカラムの合計値を算出
-                decimalCalculation = new Decimal(columnSwitchValue);
-                columnSwitchSum = decimalCalculation.plus(columnSwitchSum).toNumber();
+                decimalCalculation = new Decimal(fixedColumnPx);
+                fixedTotalcolumn = decimalCalculation.plus(fixedTotalcolumn).toNumber();
                 // 選択されているカラムの％を算出・出力
-                decimalCalculation = new Decimal(columnSwitchValue);
-                percentSumValue = decimalCalculation.div(contentSize).toNumber();
-                percentSumValue = Math.floor(percentSumValue*round*100)/round;
-                $('#column-percent' + val).val(percentSumValue);
-            });
-            // コンテンツサイズ　- マージンの合計値　＝ 列の合計ピクセル
-            decimalCalculation = new Decimal(contentSize);
-            totalPxColumn = decimalCalculation.minus(totalMargin).toNumber();
-            // 列合計ピクセル - 選択されているカラムの合計値 = 残った列の合計ピクセル
-            decimalCalculation = new Decimal(totalPxColumn);
-            totalPxRemainingColumn = decimalCalculation.minus(columnSwitchSum).toNumber();
-            // 列の合計数　- 選択されているカラム数　= 残った列の合計数
-            remainingColumns = columns - columnSwitchLength;
-            // = 残ったカラムの各px数（表示桁数の対応済み）
-            decimalCalculation = new Decimal(totalPxRemainingColumn);
-            pxSumValue = decimalCalculation.div(remainingColumns).toNumber();
-            pxSumValue = Math.floor(pxSumValue*round)/round;
-            // 残ったカラムの各%数
-            decimalCalculation = new Decimal(pxSumValue);
-            percentSumValue = decimalCalculation.div(contentSize).toNumber();
-            percentSumValue = Math.floor(percentSumValue*round*100)/round;
+                decimalCalculation = new Decimal(fixedColumnPx);
+                fixedColumnPercent = decimalCalculation.div(contentSize).toNumber();
+                fixedColumnPercent = Math.floor(fixedColumnPercent*100*round);
+                decimalCalculation = new Decimal(fixedColumnPercent);
+                fixedColumnPercent = decimalCalculation.div(round).toNumber();
+                decimalCalculation = new Decimal(fixedColumnPercent);
+                contentsTotalPercent = decimalCalculation.plus(contentsTotalPercent).toNumber();
+                $('#column-percent' + columnSwitch[h]).val(fixedColumnPercent);
+            }
             
-            for (var i = 0; i < 9; i++) {
-                if($.inArray(i,columnSwitch) == -1 && columns > i) {
-                    $('#column-px'+i).val(pxSumValue);
-                    $('#column-percent'+i).val(percentSumValue);
-                }else if($.inArray(i,columnSwitch) !== -1){
-                }else{
-                    $('#column-px'+i).val("");
-                    $('#column-percent'+i).val("");
+            if(columnSwitchLength != columns){
+                // コンテンツサイズ　- マージンの合計値　＝ 列の合計ピクセル
+                decimalCalculation = new Decimal(contentSize);
+                totalPxColumns = decimalCalculation.minus(columnMargin).toNumber();
+                // 列合計ピクセル - 選択されているカラムの合計値 = 残った列の合計ピクセル
+                decimalCalculation = new Decimal(totalPxColumns);
+                totalPxRemainingColumn = decimalCalculation.minus(fixedTotalcolumn).toNumber();
+                
+                // 列の合計数　- 選択されているカラム数　= 残った列の合計数
+                remainingColumns = columns - columnSwitchLength;
+                // = 残ったカラムの各px数（表示桁数の対応済み）
+                decimalCalculation = new Decimal(totalPxRemainingColumn);
+                remainingColumnPx = decimalCalculation.div(remainingColumns).toNumber();
+                remainingColumnPx = Math.floor(remainingColumnPx*round)/round;
+                // 残ったカラムの各%数
+                decimalCalculation = new Decimal(remainingColumnPx);
+                fixedColumnPercent = decimalCalculation.div(contentSize).toNumber();
+                fixedColumnPercent = Math.floor(fixedColumnPercent*100*round);
+                decimalCalculation = new Decimal(fixedColumnPercent);
+                fixedColumnPercent = decimalCalculation.div(round).toNumber();
+                
+                for (var i = 0; i < 9; i++) {
+                    if($.inArray(i,columnSwitch) == -1 && columns > i) {
+                        $('#column-px'+i).val(remainingColumnPx);
+                        $('#column-percent'+i).val(fixedColumnPercent);
+                    }else if($.inArray(i,columnSwitch) !== -1){
+                    }else{
+                        $('#column-px'+i).val("");
+                        $('#column-percent'+i).val("");
+                    }
                 }
+                // カラムの合計pxを再計算
+                decimalCalculation = new Decimal(remainingColumnPx);
+                contentsTotalSize = decimalCalculation.times(remainingColumns).toNumber();
+                decimalCalculation = new Decimal(fixedTotalcolumn);
+                contentsTotalSize = decimalCalculation.plus(contentsTotalSize).toNumber();
+                decimalCalculation = new Decimal(columnMargin);
+                contentsTotalSize = decimalCalculation.plus(contentsTotalSize).toNumber();
+                $('#contents-total-size').val(contentsTotalSize);
+                // カラムの合計%を再計算
+                decimalCalculation = new Decimal(fixedColumnPercent);
+                fixedColumnPercent = decimalCalculation.times(remainingColumns).toNumber();
+                decimalCalculation = new Decimal(fixedColumnPercent);
+                contentsTotalPercent = decimalCalculation.plus(contentsTotalPercent).toNumber();
+                decimalCalculation = new Decimal(columnMargin);
+                columnMargin = decimalCalculation.div(10).toNumber();
+                decimalCalculation = new Decimal(columnMargin);
+                contentsTotalPercent = decimalCalculation.plus(contentsTotalPercent).toNumber();
+                $('#contents-total-percent').val(contentsTotalPercent);
+            }else{
+                // 全部が固定されていた時
+                for (var i = 0; i < 9; i++) {
+                    if($.inArray(i,columnSwitch) == -1) {
+                        $('#column-px'+i).val("");
+                        $('#column-percent'+i).val("");
+                    }
+                }
+                // 合計pxの算出・出力
+                decimalCalculation = new Decimal(columnMargin);
+                fixedTotalcolumn = decimalCalculation.plus(fixedTotalcolumn).toNumber();
+                $('#contents-total-size').val(fixedTotalcolumn);
+                
+                // 合計%の算出・出力
+                decimalCalculation = new Decimal(columnMargin);
+                columnMargin = decimalCalculation.div(10).toNumber();
+                decimalCalculation = new Decimal(columnMargin);
+                contentsTotalPercent = decimalCalculation.plus(contentsTotalPercent).toNumber();
+                $('#contents-total-percent').val(contentsTotalPercent);
             }
         }else if(columnSwitchLength == 0){
             decimalCalculation = new Decimal(contentSize);
-            pxSumValue = decimalCalculation.minus(totalMargin).toNumber();
-            decimalCalculation = new Decimal(pxSumValue);
-            pxSumValue = decimalCalculation.div(columns).toNumber();
-            pxSumValue = Math.floor(pxSumValue*round)/round;
-            decimalCalculation = new Decimal(pxSumValue);
-            percentSumValue = decimalCalculation.div(contentSize).toNumber();
-            percentSumValue = Math.floor(percentSumValue*round*100)/round;
-            for(var i = 0; i<9; i++){
+            remainingColumnPx = decimalCalculation.minus(columnMargin).toNumber();
+            decimalCalculation = new Decimal(remainingColumnPx);
+            remainingColumnPx = decimalCalculation.div(columns).toNumber();
+            remainingColumnPx =  Math.floor(remainingColumnPx*round)/round;
+            decimalCalculation = new Decimal(remainingColumnPx);
+            fixedColumnPercent = decimalCalculation.div(contentSize).toNumber();
+            fixedColumnPercent = Math.floor(fixedColumnPercent*100*round);
+            decimalCalculation = new Decimal(fixedColumnPercent);
+            fixedColumnPercent = decimalCalculation.div(round).toNumber();
+            for(var i = 0; i < 9; i++){
                 if(columns > i){
-                    $('#column-px'+i).val(pxSumValue);
-                    $('#column-percent'+i).val(percentSumValue);
+                    $('#column-px'+i).val(remainingColumnPx);
+                    $('#column-percent'+i).val(fixedColumnPercent);
                 }else{
                     $('#column-px'+i).val("");
                     $('#column-percent'+i).val("");
                 }
             }
+            decimalCalculation = new Decimal(remainingColumnPx);
+            contentsTotalSize = decimalCalculation.times(columns).toNumber();
+            decimalCalculation = new Decimal(contentsTotalSize);
+            contentsTotalSize = decimalCalculation.plus(columnMargin).toNumber();
+            $('#contents-total-size').val(contentsTotalSize);
+            
+            decimalCalculation = new Decimal(fixedColumnPercent);
+            contentsTotalPercent = decimalCalculation.times(columns).toNumber();
+            decimalCalculation = new Decimal(columnMargin);
+            columnMargin = decimalCalculation.div(10).toNumber();
+            decimalCalculation = new Decimal(columnMargin);
+            contentsTotalPercent = decimalCalculation.plus(contentsTotalPercent).toNumber();
+            $('#contents-total-percent').val(contentsTotalPercent);
         }
     }
-    
-    function fixedChenge(_this){
-        switch($(_this).attr('id')){
-            case 'content-size':
-            $('#fixed-check1').attr('checked',true);
-            break;
-            case 'column-margin':
-            $('#fixed-check2').attr('checked',true);
-            break;
-            case 'total-margin':
-            $('#fixed-check3').attr('checked',true);
-            break;
-            case 'columns':
-            $('#fixed-check4').attr('checked',true);
-            break;
-        }
-    }
-    
-    function pxFixedChenge(_this){
+    function pxFixedChange(_this){
         switch($(_this).attr('id')){
             case 'column-px0' :
             $('#column-switch0').attr('checked',true);
@@ -141,20 +175,31 @@ $(function(){
             break;
         }
     }
+    function copyToClipboard(_this){
+        var copyVal = $(_this).val();
+        // コピー対象をJavaScript上で変数として定義する
+        var copyTarget = document.getElementById(copyVal);
+        // コピー対象のテキストを選択する
+        copyTarget.select();
+        // 選択しているテキストをクリップボードにコピーする
+        document.execCommand("copy");
+    }
+    $('.copy').on('click',function(){
+        copyToClipboard(this);
+    });
     
     // 各値が変わった時、
-    $( '#content-size,#column-margin,#total-margin,#columns').change( function() {
+    // $( '#content-size,#column-margin,#total-margin,#columns,#round').change( function() {
+    //     columnMarginCalculation();
+    // });
+    $( '#round').change( function() {
         columnMarginCalculation();
     });
-    // 各テキストボックスがフォーカスされた時
-    $('#content-size,#column-margin,#total-margin,#columns').focus(function(){
-        fixedChenge(this);
-    });
     $('.column-px').focus(function(){
-        pxFixedChenge(this);
+        pxFixedChange(this);
     });
     // 各inputがフォーカスされ、ラジオボタンの値が変わった時、
-    $('#round,.column-switch').change(function(){
+    $('.column-switch').change(function(){
         columnMarginCalculation();
     });
     // 半角数字とdeleteキーとbackspaceキーとenterキーの入力を検知
